@@ -1,0 +1,5 @@
+# changes markdown to be visable on the github capsule
+*.md linguist-detectable
+
+# changes JSON to be visable on the github capsule
+*.json linguist-detectable
