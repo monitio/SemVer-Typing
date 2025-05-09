@@ -6,43 +6,43 @@ on:
       - main
 
 permissions:
-  contents: write   # needed to commit back
+  contents: write
 
 jobs:
   update-versioning:
+    # don’t run when github-actions[bot] pushes
     if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           persist-credentials: true
 
-      - name: Extract short SHA
-        id: extract_sha
+      - name: Update VERSIONING.md & commit as bot
+        shell: bash
         run: |
-          full_sha="${{ github.sha }}"
-          echo "short_sha=${full_sha:0:7}" >> $GITHUB_OUTPUT
+          # 1. Prepare variables
+          FULL_SHA="${GITHUB_SHA}"
+          SHORT_SHA="${FULL_SHA:0:7}"
+          ACTOR="@${GITHUB_ACTOR}"
 
-      - name: Replace SHA placeholder
-        uses: richardrigutins/replace-in-files@v2
-        with:
-          files: src/VERSIONING.md
-          search-text: '\${{ steps.extract_sha.outputs.short_sha }}'
-          replacement-text: ${{ steps.extract_sha.outputs.short_sha }}  # evaluated by GHA
+          # 2. In-place replace both placeholders with Perl
+          perl -pe '
+            s/\$\{\{\s*steps\.extract_sha\.outputs\.short_sha\s*\}\}/'"${SHORT_SHA}"'/g;
+            s/@\$\{\{\s*github\.actor\s*\}\}/'"${ACTOR}"'/g;
+          ' -i src/VERSIONING.md
 
-      - name: Replace actor placeholder
-        uses: richardrigutins/replace-in-files@v2
-        with:
-          files: src/VERSIONING.md
-          search-text: '@\${{ github.actor }}'
-          replacement-text: '@${{ github.actor }}'
+          # 3. Commit & push if something changed
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit & push as GitHub Actions bot
-        uses: EndBug/add-and-commit@v7
-        with:
-          add: 'src/VERSIONING.md'
-          message: 'chore: update VERSIONING.md placeholders'
-          default_author: github_actions
+          if git diff --quiet; then
+            echo "No changes in VERSIONING.md - nothing to commit"
+          else
+            git add src/VERSIONING.md
+            git commit -m "chore: update VERSIONING.md placeholders"
+            git push
+          fi
