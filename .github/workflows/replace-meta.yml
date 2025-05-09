@@ -29,12 +29,12 @@ jobs:
       - name: Replace variables in VERSIONING.md
         run: |
           SHA="${{ steps.extract_sha.outputs.short_sha }}"
-          ACTOR="${{ env.ACTOR }}"
-          # Use # as delimiter and escape $
+          ACTOR="${{ github.actor }}"
           sed -i \
-            -e "s#\\\${{ steps.extract_sha.outputs.short_sha }}#${SHA}#g" \
-            -e "s#@\\\${{ github.actor }}#@${ACTOR}#g" \
+            -e 's#\${{ steps.extract_sha.outputs.short_sha }}#'"${SHA}"'#g' \
+            -e 's#@${{ github.actor }}#@'"${ACTOR}"'#g' \
             src/VERSIONING.md
+
 
       - name: Commit & push changes if any
         run: |
