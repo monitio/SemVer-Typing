@@ -1,4 +1,4 @@
-v1.0.0-release-testing | ${{ steps.extract_sha.outputs.short_sha }}
+v1.0.0-release-testing | \${{ steps.extract_sha.outputs.short_sha }}
 
 Triggered by committer: @${{ github.actor }}
 
