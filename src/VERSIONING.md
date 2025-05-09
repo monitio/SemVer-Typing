@@ -1,6 +1,6 @@
-v1.0.0-release-testing | \${{ steps.extract_sha.outputs.short_sha }}
+v1.0.0-release-testing | \0e3a6bf
 
-Triggered by committer: @${{ github.actor }}
+Triggered by committer: -beans
 
 ---
 
