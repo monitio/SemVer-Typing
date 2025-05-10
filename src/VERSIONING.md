@@ -1,4 +1,4 @@
-v1.0.0-release-testing | [e447e65](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
+v1.0.0-release-testing | [e447e65](https://github.com/monitio/SemVer-Typing/commit/7843fc76f37a20741737d84462e64efc9b1701c7)
 
 Triggered by committer: @james-beans
 
