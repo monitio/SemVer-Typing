@@ -1,6 +1,6 @@
-v1.0.0-release | [9c92ae8](https://github.com/monitio/SemVer-Typing/commit/9c92ae86c53864920019722c5c983c8f2a86f8fa)
+v1.0.0-release | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
 
-Triggered by committer: @james-beans
+Triggered by committer: @${{ github.actor }}
 
 ---
 
@@ -8,7 +8,7 @@ Triggered by committer: @james-beans
 **SemVer Typing** is a versioning scheme that extends [Semantic Versioning](https://semver.org) or [SemVer](https://semver.org) for short. It allows meaningful tags to be used at the end of each version to describe types and context.
 
 ## Examples:
-I have put all examples in the [examples folder](../examples/).
+I have put all examples in the [examples folder](https://github.com/monitio/SemVer-Typing/tree/main/examples).
 
 # Format:
 Use the following format for every version of your package if it is using [SemVer Typing](./VERSIONING.md):
