@@ -1,6 +1,6 @@
-v1.0.0-release-testing | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
+v1.0.0-release-testing | [084feaf](https://github.com/monitio/SemVer-Typing/commit/084feaf182946df371bb8782e394ee8e2a4c904f)
 
-Triggered by committer: @${{ github.actor }}
+Triggered by committer: @james-beans
 
 ---
 
