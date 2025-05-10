@@ -9,7 +9,7 @@ You will need to add the version manually after the `v` as bumping it doesn't wo
 
 `VERSIONING.md`:
 ```md
-v | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+v | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
 
 Triggered by committer: @${{ github.actor }}
 
