@@ -1,6 +1,6 @@
-v1.0.0-release | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
+v1.0.0-release | [9c92ae8](https://github.com/monitio/SemVer-Typing/commit/9c92ae86c53864920019722c5c983c8f2a86f8fa)
 
-Triggered by committer: @${{ github.actor }}
+Triggered by committer: @james-beans
 
 ---
 
