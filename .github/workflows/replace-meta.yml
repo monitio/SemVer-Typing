@@ -10,7 +10,6 @@ permissions:
 
 jobs:
   update-versioning:
-    # don’t run when github-actions[bot] pushes
     if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
 
@@ -29,13 +28,11 @@ jobs:
           SHORT_SHA="${FULL_SHA:0:7}"
           ACTOR="@${GITHUB_ACTOR}"
 
-          # 2. In-place replace both placeholders with Perl
-          perl -pe '
-            s/\$\{\{\s*steps\.extract_sha\.outputs\.short_sha\s*\}\}/'"${SHORT_SHA}"'/g;
-            s/@\$\{\{\s*github\.actor\s*\}\}/'"${ACTOR}"'/g;
-          ' -i src/VERSIONING.md
+          perl -i -pe '
+            s/\\?\$\{\{\s*steps\.extract_sha\.outputs\.short_sha\s*\}\}/'"${SHORT_SHA}"'/g;
+            s/@\\?\$\{\{\s*github\.actor\s*\}\}/'"${ACTOR}"'/g;
+          ' src/VERSIONING.md
 
-          # 3. Commit & push if something changed
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
