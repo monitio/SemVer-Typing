@@ -23,21 +23,19 @@ jobs:
       - name: Update VERSIONING.md & commit as bot
         shell: bash
         run: |
-          # 1. Prepare variables
           FULL_SHA="${GITHUB_SHA}"
           SHORT_SHA="${FULL_SHA:0:7}"
-          ACTOR="@${GITHUB_ACTOR}"
+          ACTOR="${GITHUB_ACTOR}"
 
           perl -i -pe '
             s/\\?\$\{\{\s*steps\.extract_sha\.outputs\.short_sha\s*\}\}/'"${SHORT_SHA}"'/g;
-            s/@\\?\$\{\{\s*github\.actor\s*\}\}/'"${ACTOR}"'/g;
+            s/\$\{\{\s*github\.actor\s*\}\}/'"${ACTOR}"'/g;
           ' src/VERSIONING.md
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
           if git diff --quiet; then
-            echo "No changes in VERSIONING.md - nothing to commit"
+            echo "No changes to VERSIONING.md"
           else
             git add src/VERSIONING.md
             git commit -m "chore: update VERSIONING.md placeholders"

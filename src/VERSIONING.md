@@ -1,6 +1,6 @@
-v1.0.0-release-testing | [a0b1f10](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+v1.0.0-release-testing | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
 
-Triggered by committer: -beans
+Triggered by committer: @${{ github.actor }}
 
 ---
 
