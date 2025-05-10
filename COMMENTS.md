@@ -11,7 +11,7 @@ You will need to add the version manually after the `v` as bumping it doesn't wo
 ```md
 v | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
 
-Triggered by committer: @${{ github.actor }}
+Triggered by committer: [@${{ github.actor }}](https://github.com/${{ github.actor }})
 
 ---
 ```
