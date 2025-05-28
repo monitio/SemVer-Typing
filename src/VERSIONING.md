@@ -1,6 +1,6 @@
-v1.1.0-release.declaration | [dc61227](https://github.com/monitio/SemVer-Typing/commit/dc61227efadac2cc18ab0a5eaf5e40c4847564b8)
+v1.1.1-release.declaration | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
 
-Triggered by committer: [@james-beans](https://github.com/james-beans)
+Triggered by committer: [@${{ github.actor }}](https://github.com/${{ github.actor }})
 
 ---
 
@@ -68,4 +68,4 @@ These are the supported values that are allowed:
 		- `error` - Build failed due to an error
 - **Secondary Indicator** (custom options are supported)
 	-  This allows any indicator from the previous indicator value to be used here to show more information about your package.
-		- Example: `1.0.0-release-custom-darwin` This version means that it is a different format or a custom format that is only available on Darwin devices. Darwin is the secondary indicator here.
+		- Example: `1.0.0-release.custom.darwin` This version means that it is a different format or a custom format that is only available on Darwin devices. Darwin is the secondary indicator here.
