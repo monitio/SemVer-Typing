@@ -36,7 +36,7 @@ When I mean "**some cases**" I mean specifically in values you cannot create you
 ---
 
 > [!TIP]
-> Indicator is sorted into filters here and almost everywhere else. This filters to not need to be put in the final version. Example: Using the build-format `asm` option: `1.0.0-release-asm`
+> Indicator is sorted into filters here and almost everywhere else. This filters to not need to be put in the final version. Example: Using the build-format `asm` option: `1.0.0-release.asm`
 
 These are the supported values that are allowed:
 - **Type** (pick a singular one and no custom options)
@@ -49,11 +49,11 @@ These are the supported values that are allowed:
 		- `wasm` - Web Assembly build
 		- `JS`/`js` - JavaScript build
 		- `TS`/`ts` - TypeScript build
-		- `binary` - Binary executable build
-		- `custom` - Any other custom build identifier / type
 		- `SRC`/`src` - Plain source-code
+    		- `bin` / `binary` - Binary executable build
+        	- `dts` - TypeScript declarations (`*.d.ts` files)
+		- `custom` - Any other custom build identifier / type
 		- `declaration` - A reasoning declaration of anything (like this)
-		- `dts` - TypeScript declarations (`*.d.ts` files)
 	- `platform`:
 		- `Windows` - Any Windows OS type
 		- `Linux` - Any Linux distro / type
