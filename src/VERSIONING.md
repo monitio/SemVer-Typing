@@ -1,6 +1,6 @@
-v1.1.2-release.declaration | [2cb7287](https://github.com/monitio/SemVer-Typing/commit/2cb7287ad0db4451b633eb7a6c9044736fcc9570)
+v2.0.0-rc.1.declaration | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
 
-Triggered by committer: [@james-beans](https://github.com/james-beans)
+Triggered by committer: [@${{ github.actor }}](https://github.com/${{ github.actor }})
 
 ---
 
@@ -8,67 +8,71 @@ Triggered by committer: [@james-beans](https://github.com/james-beans)
 > This file may not be always updated to the latest version as it is almost impossible without a bot to update this automatically every single time this is updated.
 
 # What is [SemVer Typing](./VERSIONING.md)?
-**SemVer Typing** is a versioning scheme that extends [Semantic Versioning](https://semver.org) or [SemVer](https://semver.org) for short. It allows meaningful tags to be used at the end of each version to describe types and context.
+**SemVer Typing** is a set of conventions for using the pre-release tag feature of [Semantic Versioning (SemVer)](https://semver.org/). It provides a structured way to communicate a version's **development stage** and optional **build-specific metadata**.
 
-## Examples:
-I have put all examples in the [examples folder](https://github.com/monitio/SemVer-Typing/tree/main/examples).
-
-# Format:
-Use the following format for every version of your package if it is using [SemVer Typing](./VERSIONING.md):
-
-```md
-X.Y.Z-TYPE.INDICATOR.SECONDARYINDICATOR
-```
-
-- **X.Y.Z**
-	- The major, minor, and patch version numbers, following [Semantic Versioning](https://semver.org/#semantic-versioning-specification).
-- **Type**:
-	- This is defined under [the Values section](https://github.com/monitio/SemVer-Typing/blob/main/src/VERSIONING.md#values) as it is a value.
-- **Indicator**:
-	- This is defined under [the Values section](https://github.com/monitio/SemVer-Typing/blob/main/src/VERSIONING.md#values) as it is a value.
-- **Secondary Indicator**:
-	- This is defined under [the Values section](https://github.com/monitio/SemVer-Typing/blob/main/src/VERSIONING.md#values) as it is a value.
-
-> [!TIP]
-> You do not need to use all of the options but it is recommended to use all of the options. - If you misspell any of the format or miss any part of it out there might be issues.
-# Values:
-Values are like variables in any programming language. They can be swapped for a different variable that fits the situation better and in some cases you can create your own variables.
-
-When I mean "**some cases**" I mean specifically in values you cannot create your own values for the type value only. They are predefined before use.
+This system ensures that versions are not only machine-readable by package managers but also easily understandable by developers at a glance.
 
 ---
 
-> [!TIP]
-> Indicator is sorted into filters here and almost everywhere else. This filters to not need to be put in the final version. Example: Using the build-format `asm` option: `1.0.0-release.asm`
+# Format:
+Use the following format for versions of your package/software using SemVer Typing. Note that a final, stable release will not have any pre-release tags (e.g., `1.0.0`).
 
-These are the supported values that are allowed:
-- **Type** (pick a singular one and no custom options)
-	- `release` - for official releases
-	- `prerelease` - for pre-releases
-	- `testing` - for tests or test builds
-- **Indicator** (custom options are supported)
-	- `build-format`:
-		- `asm` - Assembly build
-		- `wasm` - Web Assembly build
-		- `JS`/`js` - JavaScript build
-		- `TS`/`ts` - TypeScript build
-		- `SRC`/`src` - Plain source-code
-    		- `bin` / `binary` - Binary executable build
-        	- `dts` - TypeScript declarations (`*.d.ts` files)
-		- `custom` - Any other custom build identifier / type
-		- `declaration` - A reasoning declaration of anything (like this)
-	- `platform`:
-		- `Windows` - Any Windows OS type
-		- `Linux` - Any Linux distro / type
-		- `Android` - Any Android version
-		- `Darwin` - Any MacOS / iOS version
-		- `iPadOS` - Any version of iPadOS
-		- `iPhone`/`iOS` - Any version of iOS on the iPhone
-		- `multiplatform` - Builds to multiple platforms
-	- `status`:
-		- `working` - Functional / passing tests
-		- `broken` - Failing or non-functional
-		- `error` - Build failed due to an error
-- **Secondary Indicator** (custom options are supported)
-	-  This allows any indicator from the previous indicator value to be used here to show more information about your package.
-		- Example: `1.0.0-release.custom.darwin` This version means that it is a different format or a custom format that is only available on Darwin devices. Darwin is the secondary indicator here.
+```md
+X.Y.Z-STAGE.N.METADATA
+```
+
+- `X.Y.Z`
+  - The major, minor, and patch version numbers, following standard [Semantic Versioning rules](https://semver.org/#semantic-versioning-specification-semver). For projects before their first major release, it's common practice to start with `0.Y.Z`.
+- `STAGE.N`
+  - The **required** pre-release tag indicating the development stage.
+  - `STAGE`: The maturity of the pre-release (e.g., `alpha`, `beta`).
+  - `N`: A number that increments with each new build for that stage (e.g., `alpha.1`, `alpha.2`).
+- `METADATA`
+  - **Optional**, dot-separated identifiers describing the build. This is where you can specify the platform, build format, or status. You can chain multiple metadata tags.
+
+---
+
+## Tag Components
+### Stage (**Required** for pre-releases, pick one)
+This component describes the stability and completeness of a pre-release version.
+  - `alpha` - **Early Development**: Features may be incomplete, unstable or buggy. Used for initial testing.
+  - `beta` - **Feature Complete**: All major features are implemented, but the build is undergoing public testing to find and fix bugs.
+  - `rc` - **Release Candidate**: The version is considered stable and ready for release. This is a final testing phase to catch critical last-minute issues.
+
+### Metadata (**Optional**)
+These are descriptive tags that provide context about a specific build artifact. You can use any of the identifiers below and chain them together. Custom options are supported.
+
+- `build-format`:
+  - `asm` - Assembly build
+  - `wasm` - Web Assembly build
+  - `js` - JavaScript build
+  - `ts` - TypeScript build
+  - `src` - Plain source-code
+  - `bin`/`binary` - Binary executable build
+  - `dts` - TypeScript declarations (`*.d.ts` files)
+- `platform`:
+  - `windows` - Any Windows OS
+  - `linux` - Any Linux distro
+  - `darwin` - Any macOS version
+  - `multiplatform` - Builds for multiple platforms
+- `status`:
+  - `working` - Functional / passing tests
+  - `broken` - Failing / non-functional
+  - `error` - Build failed due to an error
+
+---
+
+## Examples & Workflow
+Here’s how a version might progress from early development to a final release.
+
+1. First alpha build for upcoming `0.1.0` release:
+  - `0.1.0-alpha.1`
+2. A new alpha build, creating a specific binary for Windows:
+  - `0.1.0-alpha.2.windows.bin`
+3. After alpha testing, the first beta is released:
+  - `0.2.0-beta.1` (Minor version bumped for new features added during alpha)
+4. The code is now considered stable and ready for the `1.0.0` release:
+  - `1.0.0-rc.1`
+5. The final, stable public release:
+  - `1.0.0`
+
