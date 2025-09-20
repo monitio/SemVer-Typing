@@ -1,6 +1,6 @@
-v2.0.0-rc.1.declaration | [${{ steps.extract_sha.outputs.short_sha }}](https://github.com/monitio/SemVer-Typing/commit/${{ github.sha }})
+v2.0.0-rc.1.declaration | [6c8aa30](https://github.com/monitio/SemVer-Typing/commit/6c8aa30b9edfc56d2e4a6a45413ea18e3a1441a9)
 
-Triggered by committer: [@${{ github.actor }}](https://github.com/${{ github.actor }})
+Triggered by committer: [@james-beans](https://github.com/james-beans)
 
 ---
 
